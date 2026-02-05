@@ -54,11 +54,11 @@ export default function KnowledgePage() {
               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-100 font-bold text-gray-900">
                 <Filter className="h-4 w-4" /> Filters
               </div>
-              {sidebarSections.map((section, idx) => (
+              {(sidebarSections as any[]).map((section: any, idx: number) => (
                 <div key={idx} className="mb-6 last:mb-0">
                   <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">{section.title}</h4>
                   <div className="space-y-2">
-                    {section.items.map((item, i) => (
+                    {(section.items as any[]).map((item: any, i: number) => (
                       <label key={i} className="flex items-center gap-2 text-sm text-gray-600 hover:text-[#002f6c] cursor-pointer">
                         <input type="checkbox" className="rounded border-gray-300 text-[#0088cc] focus:ring-[#0088cc]" />
                         {item}
@@ -83,7 +83,7 @@ export default function KnowledgePage() {
 
             {/* Results List */}
             <div className="space-y-4">
-              {results.map((result, idx) => (
+              {(results as any[]).map((result: any, idx: number) => (
                 <Card key={idx} className="p-6 border-gray-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer group">
                   <div className="flex gap-4">
                     <div className="hidden sm:flex h-10 w-10 bg-blue-50 rounded-lg items-center justify-center flex-shrink-0">

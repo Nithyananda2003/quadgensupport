@@ -45,7 +45,7 @@ export default async function DocumentsPage() {
                 </tr>
               </thead>
               <tbody>
-                {documents.map((doc) => (
+                {(documents as any[]).map((doc: any) => (
                   <tr key={doc.id} className="border-b last:border-0 hover:bg-gray-50/50">
                     <td className="p-4 font-medium flex items-center gap-3">
                       <FileText className="h-4 w-4 text-blue-500" />

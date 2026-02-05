@@ -34,7 +34,7 @@ export default function WarrantyRegistrationPage() {
           <div className="lg:col-span-1">
             <Card className="p-2 border-gray-200 shadow-sm bg-white sticky top-24">
               <nav className="flex flex-col gap-1">
-                {sidebarItems.map((item, idx) => (
+                {(sidebarItems as any[]).map((item: any, idx: number) => (
                   <button
                     key={idx}
                     className={`flex items-center justify-between px-4 py-3 rounded-md text-sm font-medium transition-colors ${item.active ? 'bg-blue-50 text-[#002f6c]' : 'text-gray-600 hover:bg-gray-50'}`}

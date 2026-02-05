@@ -54,7 +54,7 @@ export default function AssetManagementPage() {
               <div className="pt-4">
                 <h3 className="text-[#002f6c] text-xl font-normal mb-4">Browse</h3>
                 <div className="space-y-1 max-w-xl">
-                  {browseItems.map((item, index) => (
+                  {(browseItems as any[]).map((item: any, index: number) => (
                     <button
                       key={index}
                       className="w-full bg-[#002f6c] text-white flex items-center justify-between px-6 py-3.5 text-left text-lg font-medium hover:bg-[#001f4d] transition relative overflow-hidden group"
@@ -70,7 +70,7 @@ export default function AssetManagementPage() {
 
           {/* Right Sidebar Action Buttons */}
           <div className="w-full lg:w-80 space-y-4">
-            {actionButtons.map((label, index) => (
+            {(actionButtons as any[]).map((label: any, index: number) => (
               <button
                 key={index}
                 className="w-full bg-[#002f6c] text-white flex items-center justify-between px-6 py-4 text-left text-xl font-medium hover:bg-[#001f4d] transition relative overflow-hidden group shadow-md"

@@ -43,7 +43,7 @@ export default async function UsersPage() {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) => (
+                {(users as any[]).map((user: any) => (
                   <tr key={user.id} className="border-b last:border-0 hover:bg-gray-50/50">
                     <td className="p-4">
                       <div className="flex items-center gap-3">

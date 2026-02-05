@@ -163,7 +163,7 @@ export default function Page() {
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-3">OTP</label>
                   <div className="flex items-center justify-between gap-2" onPaste={onOtpPaste}>
-                    {Array.from({ length: 6 }).map((_, i) => (
+                    {Array.from({ length: 6 }).map((_: any, i: number) => (
                       <input
                         key={i}
                         ref={otpRefs[i]}

@@ -29,7 +29,7 @@ export default async function KnowledgePage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {articles.map((article) => (
+        {(articles as any[]).map((article: any) => (
           <Card key={article.id} className="hover:shadow-md transition-shadow">
             <CardHeader className="pb-3">
               <div className="flex justify-between items-start">

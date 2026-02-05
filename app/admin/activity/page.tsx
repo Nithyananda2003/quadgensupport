@@ -36,7 +36,7 @@ export default async function ActivityPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
-            {logs.map((log) => (
+            {(logs as any[]).map((log: any) => (
               <div key={log.id} className="flex gap-4 border-b last:border-0 pb-4 last:pb-0">
                 <div className="mt-1">
                   <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center">

@@ -32,7 +32,7 @@ export default function AboutPage() {
           {/* Left Sidebar */}
           <div className="w-full md:w-[300px] border-r border-[#ddd]">
             <ul className="text-[14px]">
-              {sidebarLinks.map((link, index) => (
+              {(sidebarLinks as any[]).map((link: any, index: number) => (
                 <li key={index} className="border-b border-[#eee]">
                   <a
                     href="#"
@@ -91,7 +91,7 @@ export default function AboutPage() {
                   link: 'Contact Support',
                   href: '/contact-us'
                 }
-              ].map((item) => (
+              ].map((item: any) => (
                 <div key={item.id} className="flex gap-4 items-start">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#002f6c] text-[#fcfaf2] flex items-center justify-center font-bold text-lg">
                     {item.id}
