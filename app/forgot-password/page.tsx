@@ -16,7 +16,7 @@ export default function Page() {
   const [otpVerified, setOtpVerified] = useState(false)
   const router = useRouter()
   const params = useSearchParams()
-  const otpRefs = Array.from({ length: 6 }, () => useRef(null))
+  const otpRefs = Array.from({ length: 6 }, () => useRef<HTMLInputElement>(null))
 
   useEffect(() => {
     const e = params.get('email') || ''
@@ -55,7 +55,7 @@ export default function Page() {
     return () => clearInterval(t)
   }, [seconds])
 
-  function onOtpChange(i, v) {
+  function onOtpChange(i: number, v: string) {
     const val = v.replace(/\\D/g, '').slice(0, 1)
     const arr = otp.padEnd(6, ' ').split('')
     arr[i] = val || ''
@@ -64,13 +64,13 @@ export default function Page() {
     if (val && i < 5) otpRefs[i + 1].current?.focus()
   }
 
-  function onOtpKey(i, e) {
+  function onOtpKey(i: number, e: any) {
     if (e.key === 'Backspace' && !otp[i] && i > 0) otpRefs[i - 1].current?.focus()
     if (e.key === 'ArrowLeft' && i > 0) otpRefs[i - 1].current?.focus()
     if (e.key === 'ArrowRight' && i < 5) otpRefs[i + 1].current?.focus()
   }
 
-  function onOtpPaste(e) {
+  function onOtpPaste(e: any) {
     const text = e.clipboardData.getData('text').replace(/\\D/g, '').slice(0, 6)
     if (!text) return
     e.preventDefault()
