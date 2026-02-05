@@ -19,7 +19,7 @@ export default async function Page() {
             </tr>
           </thead>
           <tbody>
-            {items.map(a => (
+            {(items as any[]).map((a: any) => (
               <tr key={a.id} className="border-t">
                 <td className="px-4 py-3">{a.title}</td>
                 <td className="px-4 py-3">{a.type}</td>
