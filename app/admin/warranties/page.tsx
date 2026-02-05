@@ -21,7 +21,7 @@ export default async function Page() {
             </tr>
           </thead>
           <tbody>
-            {warranties.map(w => (
+            {(warranties as any[]).map((w: any) => (
               <tr key={w.id} className="border-t">
                 <td className="px-4 py-3">{w.serialNumber}</td>
                 <td className="px-4 py-3">{w.productName}</td>

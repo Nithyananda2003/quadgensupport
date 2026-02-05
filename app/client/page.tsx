@@ -21,7 +21,7 @@ export default async function Page() {
         <div className="p-6 bg-white border border-gray-100 rounded-xl">
           <h2 className="text-lg font-semibold">Latest Cases</h2>
           <ul className="mt-3 space-y-2 text-sm">
-            {latestCases.map(c => (
+            {(latestCases as any[]).map((c: any) => (
               <li key={c.id} className="flex justify-between border-b py-2">
                 <span>{c.subject}</span>
                 <span className="text-gray-500">{c.status}</span>

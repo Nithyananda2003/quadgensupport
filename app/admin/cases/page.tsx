@@ -21,7 +21,7 @@ export default async function Page() {
             </tr>
           </thead>
           <tbody>
-            {cases.map(c => (
+            {(cases as any[]).map((c: any) => (
               <tr key={c.id} className="border-t">
                 <td className="px-4 py-3">{c.subject}</td>
                 <td className="px-4 py-3">{c.status}</td>
