@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  firstName     String?
+  lastName      String?
+  email         String    @unique
+  password      String
+  company       String?
+  phone         String?
+  role          String    @default("USER")
+  isVerified    Boolean   @default(false)
+  otpHash       String?
+  otpExpires    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  cases         SupportCase[]
+  activityLogs  ActivityLog[]
+  authoredArticles KnowledgeArticle[]
+}
+
+model SupportCase {
+  id            String    @id @default(cuid())
+  subject       String
+  description   String
+  status        String    @default("OPEN")
+  priority      String    @default("MEDIUM")
+  category      String
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Warranty {
+  id            String    @id @default(cuid())
+  serialNumber  String    @unique
+  productName   String
+  customerName  String?
+  purchaseDate  DateTime
+  expiryDate    DateTime
+  status        String    @default("ACTIVE") // ACTIVE, EXPIRED
+  registeredBy  String?   // Email of user who registered it
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Announcement {
+  id            String    @id @default(cuid())
+  title         String
+  content       String
+  type          String    @default("GENERAL") // SECURITY, VULNERABILITY, UPDATE, etc.
+  date          DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String   // "LOGIN", "SIGNUP", "WARRANTY_CHECK", "DOWNLOAD", etc.
+  details   String?  // JSON string or description
+  ipAddress String?
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model Document {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  category    String   // "DRIVER", "MANUAL", "SOFTWARE"
+  url         String   // URL to file (or path)
+  version     String?
+  productFamily String? 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model KnowledgeArticle {
+  id          String   @id @default(cuid())
+  title       String
+  content     String   @db.Text
+  category    String
+  authorId    String
+  isPublished Boolean  @default(true)
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  author      User     @relation(fields: [authorId], references: [id])
+}

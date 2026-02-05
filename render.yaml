@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: quadgen-support-non-prod
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.x
+      - key: NEXT_TELEMETRY_DISABLED
+        value: 1
+      - key: DATABASE_URL
+        sync: false
