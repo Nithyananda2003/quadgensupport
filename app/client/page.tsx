@@ -1,11 +1,7 @@
-import { prisma } from '@/lib/prisma'
+'use client'
 
-export default async function Page() {
-  const latestCases = await prisma.supportCase.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 5,
-    select: { id: true, subject: true, status: true, createdAt: true },
-  })
+export default function Page() {
+  const latestCases: Array<{ id: string; subject: string; status: string; createdAt: string }> = []
   return (
     <div className="max-w-[1200px] mx-auto p-6">
       <h1 className="text-2xl font-semibold">Client Dashboard</h1>
@@ -21,7 +17,7 @@ export default async function Page() {
         <div className="p-6 bg-white border border-gray-100 rounded-xl">
           <h2 className="text-lg font-semibold">Latest Cases</h2>
           <ul className="mt-3 space-y-2 text-sm">
-            {(latestCases as any[]).map((c: any) => (
+            {latestCases.map(c => (
               <li key={c.id} className="flex justify-between border-b py-2">
                 <span>{c.subject}</span>
                 <span className="text-gray-500">{c.status}</span>

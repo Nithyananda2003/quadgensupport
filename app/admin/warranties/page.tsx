@@ -1,11 +1,7 @@
-import { prisma } from '@/lib/prisma'
+'use client'
 
-export default async function Page() {
-  const warranties = await prisma.warranty.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 50,
-    select: { id: true, serialNumber: true, productName: true, customerName: true, status: true, expiryDate: true },
-  })
+export default function Page() {
+  const warranties: Array<{ id: string; serialNumber: string; productName: string; customerName?: string; status: string; expiryDate: string }> = []
   return (
     <div className="max-w-[1200px] mx-auto p-6">
       <h1 className="text-2xl font-semibold">Warranties</h1>
@@ -21,7 +17,7 @@ export default async function Page() {
             </tr>
           </thead>
           <tbody>
-            {(warranties as any[]).map((w: any) => (
+            {warranties.map(w => (
               <tr key={w.id} className="border-t">
                 <td className="px-4 py-3">{w.serialNumber}</td>
                 <td className="px-4 py-3">{w.productName}</td>
@@ -30,6 +26,11 @@ export default async function Page() {
                 <td className="px-4 py-3">{new Date(w.expiryDate).toLocaleDateString()}</td>
               </tr>
             ))}
+            {warranties.length === 0 && (
+              <tr>
+                <td colSpan={5} className="px-4 py-6 text-center text-gray-500">No warranties</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

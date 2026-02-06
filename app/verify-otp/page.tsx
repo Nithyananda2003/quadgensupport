@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState, Fragment } from 'react'
+import { Suspense, useEffect, useRef, useState, Fragment } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Loader2 } from 'lucide-react'
@@ -7,6 +7,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 
 export default function VerifyOtpPage() {
+  return (
+    <Suspense fallback={null}>
+      <VerifyOtpContent />
+    </Suspense>
+  )
+}
+
+function VerifyOtpContent() {
   const [email, setEmail] = useState('')
   const [otp, setOtp] = useState('')
   const [message, setMessage] = useState('')

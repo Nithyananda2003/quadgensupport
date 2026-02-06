@@ -34,7 +34,7 @@ export default function Announcements() {
     },
   ]
 
-  const getTypeColor = (type) => {
+  const getTypeColor = (type: string) => {
     switch (type) {
       case 'Critical':
         return 'bg-red-100 text-red-800'

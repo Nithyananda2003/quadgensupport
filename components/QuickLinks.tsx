@@ -1,5 +1,6 @@
 'use client'
 
+import type { MouseEvent } from 'react'
 import { Download, Shield, FileText, Users, Zap, LifeBuoy } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
@@ -45,7 +46,7 @@ export default function QuickLinks() {
     },
   ]
 
-  const handleLinkClick = (e, href) => {
+  const handleLinkClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'
     

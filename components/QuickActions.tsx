@@ -1,5 +1,6 @@
 'use client'
 
+import type { MouseEvent } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function QuickActions() {
@@ -13,7 +14,7 @@ export default function QuickActions() {
     { label: 'Submit A Case', bg: 'bg-[#0088cc] hover:opacity-90', href: '/contact-us' },
   ]
 
-  const handleActionClick = (e, href) => {
+  const handleActionClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'
     

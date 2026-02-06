@@ -1,12 +1,10 @@
-import { prisma } from '@/lib/prisma'
+'use client'
 
-export default async function Page() {
-  const [usersCount, warrantiesCount, casesCount, announcementsCount] = await Promise.all([
-    prisma.user.count(),
-    prisma.warranty.count(),
-    prisma.supportCase.count(),
-    prisma.announcement.count(),
-  ])
+export default function Page() {
+  const usersCount = 0
+  const warrantiesCount = 0
+  const casesCount = 0
+  const announcementsCount = 0
   return (
     <div className="max-w-[1200px] mx-auto p-6">
       <h1 className="text-2xl font-semibold">Admin Dashboard</h1>

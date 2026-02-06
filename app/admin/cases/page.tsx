@@ -1,11 +1,7 @@
-import { prisma } from '@/lib/prisma'
+'use client'
 
-export default async function Page() {
-  const cases = await prisma.supportCase.findMany({
-    orderBy: { createdAt: 'desc' },
-    take: 50,
-    select: { id: true, subject: true, status: true, priority: true, category: true, createdAt: true },
-  })
+export default function Page() {
+  const cases: Array<{ id: string; subject: string; status: string; priority: string; category: string; createdAt: string }> = []
   return (
     <div className="max-w-[1200px] mx-auto p-6">
       <h1 className="text-2xl font-semibold">Support Cases</h1>
@@ -21,7 +17,7 @@ export default async function Page() {
             </tr>
           </thead>
           <tbody>
-            {(cases as any[]).map((c: any) => (
+            {cases.map(c => (
               <tr key={c.id} className="border-t">
                 <td className="px-4 py-3">{c.subject}</td>
                 <td className="px-4 py-3">{c.status}</td>
@@ -30,6 +26,11 @@ export default async function Page() {
                 <td className="px-4 py-3">{new Date(c.createdAt).toLocaleString()}</td>
               </tr>
             ))}
+            {cases.length === 0 && (
+              <tr>
+                <td colSpan={5} className="px-4 py-6 text-center text-gray-500">No cases</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

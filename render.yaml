@@ -4,9 +4,13 @@ services:
     env: node
     plan: free
     region: oregon
-    branch: main
+    branch: frontend-only-deploy
     autoDeploy: true
-    buildCommand: npm install && npx prisma generate && if [ -n "$DATABASE_URL" ]; then npx prisma migrate deploy; else echo "Skipping Prisma migrations: DATABASE_URL not set"; fi && npm run build
+    buildCommand: >-
+      npm install &&
+      npx prisma generate &&
+      if [ -n "$DATABASE_URL" ]; then npx prisma migrate deploy; else echo "Skipping Prisma migrations: DATABASE_URL not set"; fi &&
+      npm run build
     startCommand: npm run start
     envVars:
       - key: NODE_VERSION
