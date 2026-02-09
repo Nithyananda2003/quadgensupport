@@ -8,7 +8,7 @@ export default function AdminLoginPage() {
   const [error, setError] = useState('')
   const router = useRouter()
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     try {
@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
       }
       router.push('/admin')
       router.refresh()
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message)
     }
   }
