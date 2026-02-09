@@ -46,16 +46,28 @@ model SupportCase {
 }
 
 model Warranty {
-  id            String    @id @default(cuid())
-  serialNumber  String    @unique
-  productName   String
-  customerName  String?
-  purchaseDate  DateTime
-  expiryDate    DateTime
-  status        String    @default("ACTIVE") // ACTIVE, EXPIRED
-  registeredBy  String?   // Email of user who registered it
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id                String    @id @default(cuid())
+  serialNumber      String    @unique
+  productName       String
+  customerName      String?
+  companyName       String?
+  mobileNumber      String?
+  address           String?
+  city              String?
+  state             String?
+  zipCode           String?
+  productCategory   String?
+  modelNumber       String?
+  quantity          Int       @default(1)
+  purchaseDate      DateTime
+  expiryDate        DateTime
+  purchaseChannel   String?
+  resellerName      String?
+  proofOfPurchaseUrl String?
+  status            String    @default("ACTIVE") // ACTIVE, EXPIRED
+  registeredBy      String?   // Email of user who registered it
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 }
 
 model Announcement {
