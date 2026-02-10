@@ -1,5 +1,6 @@
 import React from 'react';
-import { Facebook, Twitter, Linkedin, Youtube, Instagram, Globe, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Youtube, Instagram, Globe, Mail, Phone, MapPin, LayoutDashboard } from 'lucide-react';
+import Link from 'next/link';
 
 const FooterCategories = () => {
   return (
@@ -80,11 +81,18 @@ const FooterCategories = () => {
                 <Instagram className="h-5 w-5 text-white" />
               </a>
             </div>
-            <div className="mt-8">
-              <button className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors border border-gray-600 rounded-md px-4 py-2 hover:border-white">
+            <div className="mt-8 flex flex-col gap-3">
+              <button className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors border border-gray-600 rounded-md px-4 py-2 hover:border-white w-fit">
                 <Globe className="h-4 w-4" />
                 <span>United States (English)</span>
               </button>
+              <Link 
+                href="/admin/dashboard"
+                className="flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors border border-dashed border-gray-700 rounded-md px-3 py-1.5 hover:border-gray-500 w-fit"
+              >
+                <LayoutDashboard className="h-3.5 w-3.5" />
+                Admin Portal
+              </Link>
             </div>
           </div>
         </div>
